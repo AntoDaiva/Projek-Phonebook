@@ -1,3 +1,3 @@
 # Projek-Phonebook
 
-main berada pada "projek phonebook.cpp"
+main() berada pada "projek phonebook.cpp"
