@@ -1,11 +1,9 @@
-/**
- * Project Untitled
- */
 
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <cstring>
+#include <stdlib.h>
 #include "Control.h"
 #include "phonebook.h"
 
@@ -57,9 +55,10 @@ void Control::ChoosePhonebook() {
 	cin >> password;
 
 	verif = Search_Verif(username, password);//cari dan verifikasi phonebook yang dipilih
-
-	if (verif == true)
-		PhonebookLoop(username);
+	string nama_file = "pb " + username + ".txt";
+	if (verif == true) {
+		PhonebookLoop(nama_file);
+	}
 }
 
 void Control::DeletePhonebook() {
@@ -108,12 +107,12 @@ void Control::DeletePhonebook() {
 void Control::CommandLoop() {
 	int user_input;
 	do {
-		cout << "--------------------------------" << endl;
-		cout << "1. Make Phonebook" << endl;
-		cout << "2. Choose Phonebook" << endl;
-		cout << "3. Delete PHonebook" << endl;
-		cout << "(press other button to terminate program" << endl;
-		cout << "--------------------------------" << endl;
+		cout << "-----------------------------------------------------" << endl;
+		cout << "||1. Buat Phonebook\t\t\t\t   ||" << endl;
+		cout << "||2. Buka Phonebook\t\t\t\t   ||" << endl;
+		cout << "||3. Hapus PHonebook\t\t\t\t   ||" << endl;
+		cout << "||(tekan tombol lainnya untuk menghentikan program)||" << endl;
+		cout << "-----------------------------------------------------" << endl;
 		cout << "input: ";
 		cin >> user_input;
 		switch (user_input) {
@@ -135,36 +134,38 @@ void Control::CommandLoop() {
 void Control::PhonebookLoop(string file_n) {
 	int user_input;
 	do {
-		cout << "--------------------------------" << endl;
-		cout << "1. Add Contact" << endl;
-		cout << "2. Delete Contact" << endl;
-		cout << "3. Edit Contact" << endl;
-		cout << "4. Contact List" << endl;
-		cout << "5. Search Contact" << endl;
-		cout << "(press other button to terminate program" << endl;
-		cout << "--------------------------------" << endl;
+		cout << "----------------------------------------------------" << endl;
+		cout << "|1. Tambah Kontak\t\t\t\t   |" << endl;
+		cout << "|2. Hapus Kontak\t\t\t\t   |" << endl;
+		cout << "|3. Edit Kontak\t\t\t\t\t   |" << endl;
+		cout << "|4. List Kontak\t\t\t\t\t   |" << endl;
+		cout << "|5. Cari Kontak\t\t\t\t\t   |" << endl;
+		cout << "|((tekan tombol lainnya untuk menghentikan program)|" << endl;
+		cout << "----------------------------------------------------" << endl;
 		cout << "input: ";
 		cin >> user_input;
 		switch (user_input) {
 		case 1:
-			pb.AddContact();
+			pb.AddContact(file_n);
 			break;
 		case 2:
-			pb.DeleteContact();
+			pb.DeleteContact(file_n);
 			break;
 		case 3:
-			pb.EditContact();
+			pb.EditContact(file_n);
 			break;
 		case 4:
-			pb.Contactlist();
+			pb.Contactlist(file_n);
 			break;
 		case 5:
-			pb.SearchContact();
+			pb.SearchContact(file_n);
 			break;
 		}
 
 	} while ((user_input == 1) || (user_input == 2) || (user_input == 3) || (user_input == 4) || (user_input == 5)); {
 	}
+	exit(0);
+	return;
 }
 
 bool Control::Search_Verif(string un, string pw) {
