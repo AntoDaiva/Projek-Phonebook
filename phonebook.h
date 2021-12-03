@@ -1,27 +1,33 @@
-/**
- * Project Untitled
- */
 
 
+#include <string>
+using namespace std;
 #ifndef _PHONEBOOK_H
 #define _PHONEBOOK_H
 
 class phonebook {
 public: 
-    int Nama;
-    int Nomor;
-    int Alamat;
-    int Email;
+    string Nama;
+    string Nomor;
+    string Alamat;
+    string Email;
     
-void AddContact();
+void AddContact(string file_n);
     
-void DeleteContact();
+void DeleteContact(string file_n);
     
-void EditContact();
+void EditContact(string file_n);
     
-void Contactlist();
+void Contactlist(string file_n);
     
-void SearchContact();
+void SearchContact(string file_n);
+
+//fungsi tambahan
+
+void InputData();
+
+bool Search(string nama, string file_n);
+
 };
 
 #endif //_PHONEBOOK_H
